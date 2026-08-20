@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-4 auditor-theme">
+  <h2>Auditor Panel - Welcome {{user}}</h2>
+  <p class="text-muted">System monitoring and accountability reporting</p>
+  <a href="/logout" class="btn btn-secondary mb-3">Logout</a>
+
+  <!-- Tenders -->
+  <h3>Tenders</h3>
+  <ul class="list-group">
+    {% for tender in tenders %}
+      <li class="list-group-item">
+        <b>{{tender[1]}}</b> — Deadline: {{tender[3]}}
+        <p>{{tender[2]}}</p>
+        {% if tender[4] %}
+          <a href="/uploads/{{tender[4]}}" target="_blank" class="btn btn-link">Download Tender Document</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- Bids -->
+  <h3 class="mt-4">All Bids</h3>
+  <ul class="list-group">
+    {% for bid in bids %}
+      <li class="list-group-item 
+                 {% if bid[5] == 'Winner' %} list-group-item-success 
+                 {% elif bid[5] == 'Outbid' %} list-group-item-danger 
+                 {% endif %}">
+        Tender ID: {{bid[1]}} | Supplier: {{bid[2]}} | Amount: ${{bid[3]}}
+        {% if bid[4] %}
+          | <a href="/uploads/{{bid[4]}}" target="_blank">View Document</a>
+        {% endif %}
+        | Status: {{bid[5]}}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <!-- Activity Log -->
+  <h3 class="mt-4">Activity Log</h3>
+  <a href="/export_logs" class="btn btn-success mb-3">Export Logs to CSV</a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Role</th>
+        <th>Action</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for log in logs %}
+        <tr>
+          <td>{{log[0]}}</td>
+          <td>{{log[1]}}</td>
+          <td>{{log[2]}}</td>
+          <td>{{log[3]}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

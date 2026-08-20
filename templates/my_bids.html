@@ -1,0 +1,37 @@
+<div class="container mt-5">
+  <h2>My Bids</h2>
+  <p class="text-muted">Track the status of your submitted bids</p>
+
+  <a href="/dashboard" class="btn btn-secondary mb-3">Back to Dashboard</a>
+
+  <table class="table table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Tender ID</th>
+        <th>Amount</th>
+        <th>Document</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for bid in bids %}
+        <tr 
+          {% if bid[5] == 'Winner' %} class="table-success"
+          {% elif bid[5] == 'Outbid' %} class="table-danger"
+          {% else %} class="table-warning"
+          {% endif %}>
+          <td>{{ bid[1] }}</td>
+          <td>${{ bid[3] }}</td>
+          <td>
+            {% if bid[4] %}
+              <a href="/uploads/{{ bid[4] }}" target="_blank">View Document</a>
+            {% else %}
+              No document
+            {% endif %}
+          </td>
+          <td>{{ bid[5] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

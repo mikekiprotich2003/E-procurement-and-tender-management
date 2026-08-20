@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="login-container d-flex align-items-center justify-content-center">
+  <div class="login-card shadow-lg p-5">
+    <div class="text-center mb-4">
+      <i class="bi bi-person-circle" style="font-size:3rem; color:#2575fc;"></i>
+      <h2 class="mt-2">Welcome Back</h2>
+      <p class="text-muted">Login to continue</p>
+    </div>
+
+    <form method="POST">
+      <!-- Email -->
+      <div class="form-group mb-3">
+        <label for="email"><i class="bi bi-envelope-fill"></i> Email</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group mb-3">
+        <label for="password"><i class="bi bi-lock-fill"></i> Password</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+      </div>
+
+      <!-- Login Button -->
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+
+    <!-- Links -->
+    <div class="text-center mt-3">
+      <a href="/forgot" class="text-muted">Forgot Username / Password?</a><br>
+      <a href="/register" class="text-primary">Don’t have an account? Register</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

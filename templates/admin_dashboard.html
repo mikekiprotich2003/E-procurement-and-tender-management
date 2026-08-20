@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5 admin-theme">
+  <h2>Admin Dashboard - Welcome {{user}}</h2>
+  <p class="text-muted">Manage tenders and monitor bids</p>
+
+  <!-- Actions -->
+  <div class="mb-3">
+    <a href="/create_tender" class="btn btn-success">Create Tender</a>
+    <a href="/logout" class="btn btn-secondary">Logout</a>
+  </div>
+
+  <!-- Tenders -->
+  <h3>Available Tenders</h3>
+  {% for tender in tenders %}
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{tender[1]}}</h5>
+        <p class="card-text">{{tender[2]}}</p>
+        <p><b>Deadline:</b> {{tender[3]}}</p>
+
+        {% if tender[4] %}
+          <a href="/uploads/{{tender[4]}}" target="_blank" class="btn btn-link">Download Tender Document</a>
+        {% endif %}
+
+        <!-- Always show Remove Tender -->
+        <div class="mt-3">
+          <form action="/remove_tender/{{tender[0]}}" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm"
+              onclick="return confirm('Are you sure you want to remove this tender?');">
+              Remove Tender
+            </button>
+          </form>
+        </div>
+
+        <!-- Bids for this tender -->
+        <h6 class="mt-3">Bids:</h6>
+        <table class="table table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>Supplier</th>
+              <th>Amount</th>
+              <th>Document</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+  {% if bids_by_tender[tender[0]] %}
+    {% for bid in bids_by_tender[tender[0]] %}
+      <tr
+        {% if bid[5] == 'Winner' %} class="table-success"
+        {% elif bid[5] == 'Outbid' %} class="table-danger"
+        {% else %} class="table-warning"
+        {% endif %}
+      >
+       <td>{{ bid[1] }}</td>   <!-- supplier_name -->
+        <td>{{ bid[2] }}</td> <!-- amount -->
+        <td>{{ bid[3] }}</td> <!-- document -->
+        <td>{{ bid[4] }}</td> <!-- status -->
+        <td>
+          {% if bid[4] %}
+            <a href="/uploads/{{ bid[4] }}" target="_blank">View Document</a>
+          {% else %}
+            No document
+          {% endif %}
+        </td>
+        <td>{{ bid[5] }}</td>
+        <td>
+          <form action="/remove_bid/{{ bid[0] }}" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger btn-sm">Remove Bid</button>
+          </form>
+          <form method="POST" action="/mark_winner/{{ bid[0] }}" style="display:inline;">
+            <button type="submit" class="btn btn-success btn-sm">Mark Winner</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  {% else %}
+    <tr><td colspan="5" class="text-muted">No bids yet</td></tr>
+  {% endif %}
+</tbody>
+
+        </table>
+      </div>
+    </div>
+  {% else %}
+    <p class="text-muted">No tenders available.</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-4">
+  <h2>Submit Bid</h2>
+  <h3>{{tender[1]}}</h3>
+  <p>{{tender[2]}}</p>
+
+<form method="POST" action="/bid/{{tender[0]}}" enctype="multipart/form-data">
+  <label>Bid Amount</label>
+  <input type="number" name="amount" class="form-control mb-3" required>
+
+  <label>Supporting Document (PDF/DOC/DOCX)</label>
+  <input type="file" name="document" class="form-control mb-3">
+
+  <button type="submit" class="btn btn-primary">Submit Bid</button>
+</form>
+
+
+</div>
+{% endblock %}

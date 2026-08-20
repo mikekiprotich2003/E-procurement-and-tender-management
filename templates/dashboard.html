@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="card p-4">
+    <h2>Procurement Workspace</h2>
+    <p>Run transparent, competitive tenders end-to-end. Publish opportunities, collect compliant bids, score with weighted criteria and award contracts with a full audit trail.</p>
+    <!--<button class="btn btn-success me-2">Publish a Tender</button>-->
+    <button class="btn btn-primary">Browse Opportunities</button>
+  </div>
+
+  <h3 class="mt-4">Available Tenders</h3>
+  <div class="row">
+    {% for tender in tenders %}
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{tender[1]}}</h5>
+            <p class="card-text">{{tender[2]}}</p>
+            <p class="text-muted">Deadline: {{tender[3]}}</p>
+            <a href="/bid/{{tender[0]}}" class="btn btn-outline-primary">Submit Bid</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,177 @@
+:root {
+  --primary: #6C63FF;   /* Supplier purple */
+  --secondary: #00BFA6; /* Admin teal */
+  --accent: #FF6F61;    /* Auditor coral */
+  --neutral: #F1F3F4;
+  --background: #FFF9F0;
+}
+
+body {
+  background-color: var(--background);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border: none;
+  border-radius: 8px;
+}
+.btn-primary:hover {
+  background-color: #5a52d6;
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  border: none;
+  border-radius: 8px;
+}
+
+.btn-success {
+  background-color: var(--accent);
+  border: none;
+  border-radius: 8px;
+}
+
+.table-success { background-color: #d4edda !important; }
+.table-danger { background-color: #f8d7da !important; }
+.table-warning { background-color: #fff3cd !important; }
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 12px;
+  width: 400px;
+}
+
+.login-card h2 {
+  color: #333;
+}
+.login-card #btn:hover{
+  background-color: #5a52d6;
+}
+.btn-primary {
+  background-color: #2575fc;
+  border: none;
+}
+
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #11998e, #38ef7d); /* Green gradient */
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.register-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 450px;
+  padding: 30px;
+}
+
+.register-card h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register-card label {
+  font-weight: 500;
+  color: #444;
+}
+
+.register-card input {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.register-card input:focus {
+  border-color: #38ef7d;
+  outline: none;
+  box-shadow: 0 0 5px rgba(56, 239, 125, 0.5);
+}
+
+.btn-success {
+  background-color: #28a745; /* Green button */
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.btn-success:hover {
+  background-color: #2313a1;
+}
+
+.register-card p {
+  text-align: center;
+  margin-top: 15px;
+}
+/* Tender Form Styling */
+.tender-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #6a11cb, #2575fc); /* blue gradient */
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.tender-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 500px;
+}
+
+.tender-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.tender-container label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.tender-container .form-control {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.tender-container .form-control:focus {
+  border-color: #2575fc;
+  outline: none;
+  box-shadow: 0 0 6px rgba(37, 117, 252, 0.4);
+}
+
+.tender-container .btn-primary {
+  background-color: #2575fc;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: bold;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.tender-container .btn-primary:hover {
+  background-color: #1a5ed1;
+}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="register-container d-flex align-items-center justify-content-center">
+  <div class="register-card shadow-lg p-5">
+    <div class="text-center mb-4">
+      <i class="bi bi-person-plus-fill" style="font-size:3rem; color:#28a745;"></i>
+      <h2 class="mt-2">Create Account</h2>
+      <p class="text-muted">Register to get started</p>
+    </div>
+
+    <form method="POST">
+      <!-- Name -->
+      <div class="form-group mb-3">
+        <label for="name"><i class="bi bi-person-fill"></i> Name</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group mb-3">
+        <label for="email"><i class="bi bi-envelope-fill"></i> Email</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group mb-3">
+        <label for="password"><i class="bi bi-lock-fill"></i> Password</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+      </div>
+
+      <!-- Role -->
+      <div class="form-group mb-3">
+        <label for="role"><i class="bi bi-briefcase-fill"></i> Role</label>
+        <select name="role" id="role" class="form-control" required>
+          <option value="">Select your role</option>
+          <option value="supplier">Supplier</option>
+          <option value="procurement_officer">Procurement Officer</option>
+          <option value="auditor">Auditor</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+
+      <!-- Register Button -->
+      <button type="submit" class="btn btn-success w-100">Register</button>
+    </form>
+
+    <!-- Links -->
+    <div class="text-center mt-3">
+      <a href="/login" class="text-primary">Already have an account? Login</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

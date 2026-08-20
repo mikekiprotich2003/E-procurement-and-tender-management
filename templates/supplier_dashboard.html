@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card p-4 supplier-theme">
+  <h2>Supplier Dashboard - Welcome {{user}}</h2>
+  <p class="text-muted">Track your bids and explore new opportunities</p>
+  <a href="/logout" class="btn btn-secondary mb-3">Logout</a>
+
+  <!-- My Bids -->
+  <h3>My Bids</h3>
+  <table class="table table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Tender ID</th>
+        <th>Amount</th>
+        <th>Document</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for bid in my_bids %}
+        <tr 
+          {% if bid[5] == 'Winner' %} class="table-success"
+          {% elif bid[5] == 'Outbid' %} class="table-danger"
+          {% else %} class="table-warning"
+          {% endif %}>
+          <td>{{ bid[1] }}</td>
+          <td>${{ bid[3] }}</td>
+          <td>
+            {% if bid[4] %}
+              <a href="/uploads/{{ bid[4] }}" target="_blank">View Document</a>
+            {% else %}
+              No document
+            {% endif %}
+          </td>
+          <td>{{ bid[5] }}</td>
+          <td>
+            {% if bid[5] == 'Pending' %}
+              <form action="/remove_bid/{{ bid[0] }}" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+              </form>
+            {% else %}
+              <span class="text-muted">Locked</span>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Open Tenders -->
+  <h3 class="mt-4">Tenders You Haven’t Bid On</h3>
+  <ul class="list-group">
+    {% for tender in open_tenders %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <b>{{tender[1]}}</b> — Deadline: {{tender[3]}}
+          <p>{{tender[2]}}</p>
+          {% if tender[4] %}
+            <a href="/uploads/{{tender[4]}}" target="_blank" class="btn btn-link">Download Tender Document</a>
+          {% endif %}
+        </div>
+        <a href="/bid/{{tender[0]}}" class="btn btn-primary btn-sm">Submit Bid</a>
+      </li>
+    {% else %}
+      <li class="list-group-item text-muted">You have bid on all available tenders.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
